@@ -68,7 +68,7 @@ let numero = prompt ("Diga um número que esteja entre 10 e 20 ou 30 e 50")
 let numero2 = 20
 let numero3 = 30 
 let numero4 = 50
-if (numero >= 10 && numero2 <= 20 || numero3 >= 30 && numero4 <= 50){
+if (numero >= 10 && numero2 <= 20 && numero3 >= 30 && numero4 <= 50){
     console.log(" número está dentro do intervalo entre 10 e 20")
 }else {
 console.log("O número está dentro do intervalo entre 30 e 50")
