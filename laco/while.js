@@ -93,3 +93,4 @@ while(nume > 0) {
     console.log(nome)
     nume --
 }
+ 
