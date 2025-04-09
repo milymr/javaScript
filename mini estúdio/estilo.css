@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+video {
+    border: 2px solid #333;
+    width: 320px;
+    height: 240px;
+}
+
+select,
+button {
+    font-size: 16px;
+    margin-top: 10px;
+}
+.container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.tarefas {
+    width: 30%;
+    min-height: 200px;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.tarefa {
+    background-color: white;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: grab;
+}

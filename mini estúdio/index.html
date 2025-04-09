@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="estilo.js"></script>
+    <video autoplay></video>
+
+<select id="filtro">
+  <option value="none">Nenhum</option>
+  <option value="grayscale(100%)">Preto e branco</option>
+  <option value="sepia(100%)">Sépia</option>
+  <option value="blur(5px)">Desfoque</option>
+  <option value="invert(100%)">Inverter Cores</option>
+</select>
+
+<button id="capturar">Capturar Foto</button>
+
+<canvas style="display: none;"></canvas>
+<div class="container">
+    <div class="tarefas" id="pendentes">
+      <h2>Pendentes</h2>
+      <div class="tarefa" draggable="true">Estudar JavaScript</div>
+      <div class="tarefa" draggable="true">Ler capítulo de lógica</div>
+    </div>
+  
+    <div class="tarefas" id="em-andamento">
+      <h2>Em andamento</h2>
+    </div>
+  
+    <div class="tarefas" id="concluidas">
+      <h2>Concluídas</h2>
+    </div>
+ </div>
+</body>
+</html>
