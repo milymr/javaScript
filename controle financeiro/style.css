@@ -114,14 +114,14 @@ border: none;
         padding: 10px;         
         display: block;        
         position: absolute;    
-        top: 60px;              /* distância do topo */
-        left: 50%;              /* centraliza horizontalmente */
-        transform: translateX(-50%); /* corrige o deslocamento */
+        top: 70px;             
+        left: 50%;              
+        transform: translateX(-50%); 
         z-index: 100;
       }
       
       .faixa-topo {
-        background-color: #7c1247;  /* rosa Minnie */
+        background-color: #7c1247; 
         color: white;
         padding: 20px;
         text-align: center;
@@ -143,7 +143,7 @@ border: none;
         border-radius: 12px;
         padding: 30px;
         width: 80%;
-        margin: 100px auto; /* centraliza na página */
+        margin: 100px auto; 
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
       
