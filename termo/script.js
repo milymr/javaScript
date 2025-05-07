@@ -18,11 +18,11 @@ let linhaAtual = 0
 let colunaAtual = 0
 
 // Define as palavras que podem ser escolhidas
-const palavrasSecretas = ["Senai", "livro", "plano", "norte", "trevo"]
+const palavrasSecretas = ["SENAI", "LIVRO", "PLANO", "NORTE", "TREVO"]
 let mapaPalavra = {}
-let palavraSecreta = palavrasSecretas[Math.floor(Math.random() . palavrasSecretas.length)].toUpperCase()
+let palavraSecreta = palavrasSecretas[Math.floor(Math.random() * palavrasSecretas.length)]
 
-for (let i = 0; i < palavraSecreta.length; i++) {
+for (let i = 0; i < palavraSecreta.length; i += 1) {
     mapaPalavra[palavraSecreta[i]] = i
 }
 
@@ -57,12 +57,12 @@ function verificarPalpite() {
     }
 
     const colunaAtuais = document.querySelectorAll(".digitando")
-    for (let i = 0; i < colunas; i++) {
+    for (let i = 0; i < colunas; i += 1) {
         const letra = palpite[i]
 
-        if (mapaPalavra[letra] === undefined) {
+        if (mapaPalavra[letra] == undefined) {
             colunaAtuais[i].classList.add("errada")
-        } else if (mapaPalavra[letra] === i) {
+        } else if (mapaPalavra[letra] == i) {
             colunaAtuais[i].classList.add("certa")
         } else {
             colunaAtuais[i].classList.add("deslocada")
