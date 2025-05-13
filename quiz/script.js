@@ -4,107 +4,31 @@
 // - a alternativa certa (começa no 0)
 const perguntas = [
     {
-      pergunta: "Quem foi o responsável pela teoria da separação dos poderes?",
+      pergunta: "Qual o nome da nossa escola?",
       opcoes: [
-        "Karl Marx",
-        "Montesquieu",
-        "Maquiavel",
-        "Jean-Jacques Rousseau"
-      ],
-      correta: 1
-    },
-    {
-      pergunta: "Qual foi o principal motivo da Revolução Francesa?",
-      opcoes: [
-        "A invasão da Alemanha",
-        "A crise financeira e social do Antigo Regime",
-        "A descoberta da América",
-        "A Guerra dos Cem Anos"
-      ],
-      correta: 1
-    },
-    {
-      pergunta: "O que marcou o início da Idade Moderna?",
-      opcoes: [
-        "A queda de Constantinopla",
-        "A Revolução Francesa",
-        "O Renascimento Cultural",
-        "A Primeira Guerra Mundial"
+        "Luis Eulalio de Bueno Vidigal Filho",
+        "Luis Eulalio",
+        "Luis de Bueno",
+        "Luis Eulalio de Vidigal"
       ],
       correta: 0
     },
     {
-      pergunta: "Qual foi o principal objetivo da colonização portuguesa no Brasil?",
+      pergunta: "Qual o nome do nosso curso?",
       opcoes: [
-        "Construir universidades",
-        "Explorar riquezas naturais e gerar lucro",
-        "Espalhar o idioma português",
-        "Fundar cidades modernas"
-      ],
-      correta: 1
-    },
-    {
-      pergunta: "O que foi a Guerra Fria?",
-      opcoes: [
-        "Um conflito armado entre EUA e URSS",
-        "Uma disputa política, econômica e ideológica entre EUA e URSS",
-        "A guerra entre Coreia do Sul e Coreia do Norte",
-        "A Segunda Guerra Mundial"
-      ],
-      correta: 1
-    },
-    {
-      pergunta: "Qual é o sistema de governo em que o poder está nas mãos do povo?",
-      opcoes: [
-        "Monarquia",
-        "Ditadura",
-        "Democracia",
-        "Teocracia"
+        "Analise e Desenvolvimento de Sistemas",
+        "Sistemas de informação",
+        "Desenvolvimento de sistemas",
+        "Ciencia da Computação"
       ],
       correta: 2
     },
     {
-      pergunta: "Quem escreveu 'O Príncipe' e é considerado o pai da ciência política moderna?",
-      opcoes: [
-        "Platão",
-        "Aristóteles",
-        "Maquiavel",
-        "Santo Agostinho"
-      ],
-      correta: 2
-    },
-    {
-      pergunta: "Qual é a principal característica da globalização?",
-      opcoes: [
-        "Fechamento das fronteiras",
-        "Isolamento dos países",
-        "Maior interdependência entre as nações",
-        "Extinção das línguas locais"
-      ],
-      correta: 2
-    },
-    {
-      pergunta: "O que é cultura, segundo a antropologia?",
-      opcoes: [
-        "Apenas as manifestações artísticas",
-        "Tudo que é feito pelo ser humano em sociedade",
-        "Somente as tradições religiosas",
-        "A culinária de um povo"
-      ],
-      correta: 1
-    },
-    {
-      pergunta: "O que foi o Iluminismo?",
-      opcoes: [
-        "Um movimento artístico da Idade Média",
-        "Uma filosofia que valorizava a razão e criticava o absolutismo",
-        "Um tratado de paz entre países europeus",
-        "Uma doutrina religiosa"
-      ],
+      pergunta: "Em que ano foi fundado a nossa Escola?",
+      opcoes: ["1999", "1942", "1985", "1970"],
       correta: 1
     }
-  ];
-  
+  ]
   
   // Variáveis de controle
   let perguntaAtual = 0
