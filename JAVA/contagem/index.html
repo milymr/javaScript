@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Contagem Regressiva para Dia dos Namorados</h1>
+    <div id="contador">
+        <div class="p-container">
+        <p id="dias"></p>
+        <p id="horas"></p>
+        <p id="minutos"></p>
+        <p id="segundos"></p>
+</div>
+    
+       
+         <img class="gif-topo"
+    src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExemdjaWZsdnlyYnB6aTdnbzBvMHFoZmlrcmZyOWxyem93dXg3OHJuZSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/qFGDENemNMS4R5kr2o/giphy.gif"
+    alt="Gif decorativo topo">
+          <img class="gif-fundo"
+    src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXk1OHU0OGJzbzM4emZiZWNtMnFoNjk3dzIwMTl0dzFxdjc5YTNnayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/SWzbIafHOx8ERk3gXC/giphy.gif"
+    alt="Gif decorativo fundo">
+    </div>
+
+    <script>
+        function atualizarContador() {
+            const agora = new Date ()
+
+            const dataAlvo = new Date (2025, 5, 12)//maio = 4 pois janeiro é 0
+            const diferenca = dataAlvo - agora
+
+            if(diferenca <= 0) {
+                document.getElementById("contador").innerHTML = "<p>Chegou</p>"
+                clearInterval(intervalo)
+                return
+            }
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+document.getElementById("dias").textContent = "Dias: " + dias;
+document.getElementById("horas").textContent = "Horas: " + horas;
+document.getElementById("minutos").textContent = "Minutos: " + minutos;
+document.getElementById("segundos").textContent = "Segundos: " + segundos;
+
+
+}
+atualizarContador()
+const intervalo = setInterval(atualizarContador,1000)
+</script>
+</body>
+</html>
