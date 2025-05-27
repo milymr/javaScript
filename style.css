@@ -1,0 +1,106 @@
+ body {
+      background-color: #ffe6e6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #8b0000;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background-image: url(red-heart-symbol-on-transparent-background-free-png.webp);
+    }
+
+    h1 {
+      color: #b30000;
+      font-size: 1.5em;
+      margin: 20px 0 10px;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .heart {
+      color: rgb(247, 1, 1);
+      font-size: 1.5em;
+      animation: pulse 1s infinite;
+      margin: 0 5px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* Caixa do contador (reduzida) */
+    #contador {
+      background-color: #fff0f0;
+      border: 12px solid #ff4d4d;
+      border-radius: 20px;
+      padding: 75px;
+      width: 300px;
+      box-shadow: 0 12px 24px rgba(255, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .tempo {
+      background-color: #ffe6e6;
+      border: 2px dashed #ff4d4d;
+      border-radius: 12px;
+      padding: 10px;
+      margin: 8px 0;
+      width: 100%;
+      text-align: center;
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #cc0000;
+      box-shadow: 0 2px 6px rgba(255, 0, 0, 0.1);
+    }
+
+    /* GIFs fora da caixa */
+    .gif-topo, .gif-fundo {
+      position: absolute;
+      z-index: 1;
+      max-width: 200px;
+      border-radius: 12px;
+      opacity: 0.9;
+    }
+
+    .gif-topo {
+      top: 20px;
+      left: 20px;
+    }
+
+    .gif-fundo {
+      bottom: 10px;
+      right: 10px;
+    }
+
+.p-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: nowrap; /* aqui evita quebra de linha */
+  overflow-x: auto; /* caso ultrapasse a largura da tela, aparece scroll horizontal */
+}
+
+.p-container p {
+  margin: 0;
+  background-color: #8b000091;
+  border: 3px solid black; /* borda maior */
+  padding: 0.5rem;
+  white-space: nowrap;
+}
+.heart {
+  color: red;
+  font-size: 1.5em;
+  animation: pulse 1s infinite;
+  margin: 0 5px;
+  filter: opacity(0.3); /* deixa o coração transparente */
+}
