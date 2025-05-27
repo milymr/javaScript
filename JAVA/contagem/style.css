@@ -11,18 +11,19 @@
       min-height: 100vh;
       position: relative;
       overflow: hidden;
+      background-image: url(red-heart-symbol-on-transparent-background-free-png.webp);
     }
 
     h1 {
       color: #b30000;
-      font-size: 2.5em;
+      font-size: 1.5em;
       margin: 20px 0 10px;
       text-align: center;
       z-index: 2;
     }
 
     .heart {
-      color: red;
+      color: rgb(247, 1, 1);
       font-size: 1.5em;
       animation: pulse 1s infinite;
       margin: 0 5px;
@@ -95,4 +96,11 @@
   border: 3px solid black; /* borda maior */
   padding: 0.5rem;
   white-space: nowrap;
+}
+.heart {
+  color: red;
+  font-size: 1.5em;
+  animation: pulse 1s infinite;
+  margin: 0 5px;
+  filter: opacity(0.3); /* deixa o coração transparente */
 }
