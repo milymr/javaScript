@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loja de maquiagem💄</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="faixa-topo">
+    <p><strong>BEM-VINDO</strong></p>
+    <p>Loja de maquiagem💄</p>
+  </div>
+  <div>
+        <BR></BR>
+        <BR></BR>
+    </div>
+
+  <h2>🛍️ Simulador de Caixa - Loja de Maquiagem 💄</h2>
+
+  <label>Escolha o produto:
+    <select id="produto">
+      <option value="" disabled selected>-- Selecione --</option>
+      <option value="Batom|29.90">💋 Batom - R$29,90</option>
+      <option value="Base|59.90">🧴 Base - R$59,90</option>
+      <option value="Rímel|39.90">👁️ Rímel - R$39,90</option>
+      <option value="Sombra|49.90">🎨 Sombra - R$49,90</option>
+      <option value="Pincel|19.90">🖌️ Pincel - R$19,90</option>
+    </select>
+  </label>
+
+  <label>Quantidade:
+    <input type="number" id="quantidade" min="1" value="1" />
+  </label>
+
+  <button onclick="adicionarItem()">➕ Adicionar à compra</button>
+  <button onclick="limparTudo()">🧹 Limpar Compra</button>
+
+  <h3>📝 Itens:</h3>
+  <ul id="listarItens"></ul>
+
+  <div class="total">💰 Total: R$ <span id="total">0.00</span></div>
+
+  <label>💵 Valor pago pelo cliente:
+    <input type="number" id="valorPago" step="0.01" />
+  </label>
+  <button onclick="calcularTroco()">💱 Calcular Troco</button>
+
+  <div class="troco">Troco: R$ <span id="troco">0.00</span></div>
+
+  <p id="mensagemBrinde" class="brinde"></p>
+
+<div class="galeria-fotos">
+  <div class="quadrado-foto"> <img src="base.webp" alt=""> <p>Base Stick Boca Rosa🧴</p><h1>R$59,90</h1></div>
+  <p></p>
+ 
+  <div class="quadrado-foto"><img src="batom.webp" alt=""><p>Batom Boca Rosa💋</p><h1>R$29,90</h1></h></div>
+  
+  <div class="quadrado-foto"> <img src="rimel.webp" alt=""><p>Rímel Boca Rosa👁️</p><h1>R$39,90</div>
+ 
+  <div class="quadrado-foto"><img src="sombra.webp" alt=""><p>Sombra Stick Boca Rosa 🎨</p><h1>R$29,90</h1></div>
+  <div class="quadrado-foto"><img src="pincel.webp" alt=""><p>Píncel 2 em 1 Boca Rosa🖌️ </p><h1>R$19,90</h1></div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
