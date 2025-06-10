@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobrevivência na Ilha 🏝️</title>
-    <style>
-        
-        body {
-            font-family: Arial, sans-serif;
-            
-            padding: 20px;
-            text-align: center;
-            background: url("1822365-costa-da-ilha-deserta-vetor.jpg");
-
-        }
-        #historia {
-            margin-top: 30px;
-        }
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: rgb(76, 167, 151);
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        } 
-        
-          
-    
-    </style>
-</head>
-<body>
-    <h1>🏝️ Sobrevivência na Ilha Deserta 🐚</h1>
-    <div id="historia">
-        <p>Você acorda em uma praia desconhecida, cercado pelo mar e por uma floresta densa. Parece que está sozinho em uma ilha deserta... O que você faz?</p>
-        <button onclick="escolha1('floresta')">Explorar a floresta 🌳</button>
-        <button onclick="escolha1('praia')">Ficar na praia 🏖️</button>
-    </div>
-
-    <script>
-        function escolha1(opcao) {
+       function escolha1(opcao) {
             const div = document.getElementById("historia");
             if (opcao === 'floresta') {
                 div.innerHTML = `
@@ -148,6 +105,3 @@
                 `;
             }
         }
-    </script>
-</body>
-</html>
