@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+    <h1>A floresta</h1>
+    <div id="historia">
+        <p>Você está na frente de uma floresta. Deseja continuar?</p>
+        <button onclick="escolha1('sim')">Entrar na floresta</button>
+        <button onclick="escolha1('nao')">Voltar para casa</button>
+    </div>
+    <script>
+        function escolha1(resposta) {
+            const div = document.getElementById("historia")
+            if (resposta == "sim") {
+                div.innerHTML = `
+                    <p>Você encontra dois caminhos. Qual quer seguir?</p>
+                    <button onclick="escolha1('sim')">Entrar na floresta</button>
+                    <button onclick="escolha1('nao')">Voltar para casa</button>
+                `
+            } else {
+            div.innerHTML = <p>Você foi para casa. FIM</p>
+        }
+    }
+
+    function escolha2(caminho) {
+        const div = document.getElementById("historia")
+        if (caminho == "esquerda") {
+            div.innerHTML = `
+                <p>Você encontra um dragão. O que vai fazer?</p>
+                <button onclick="escolha3('lutar')">Lutar</button>
+                <button onclick="escolha3('fugir')">Fugir</button>
+            `
+        }
+
+    }
+
+    function escolha3(acao) {
+        const div = document.getElementById("historia")
+        switch (acao) {
+            case "lutar":
+                div.innerHTML =  `<p>Você venceu. Parabéns! Fim </p>
+    
+
+        }
+    }
+    </script>
+</body>
+</html>

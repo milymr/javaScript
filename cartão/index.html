@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cartão Dia dos Namorados</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffe6f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      width: 300px;
+      height: 200px;
+      perspective: 1000px;
+    }
+
+    .cartao {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .cartao.virado {
+      transform: rotateY(180deg);
+    }
+
+    .frente,
+    .verso {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      backface-visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .frente {
+      background: linear-gradient(to right, #ff4d6d, #ff94a6);
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .verso {
+      background: white;
+      color: #d6336c;
+      transform: rotateY(180deg);
+      font-size: 16px;
+      text-align: center;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="cartao" id="cartao">
+      <div class="frente">
+        💖 Feliz Dia dos Namorados!
+      </div>
+      <div class="verso" id="mensagemVerso">
+        <!-- Mensagem será inserida via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const cartao = document.getElementById("cartao");
+    const mensagemVerso = document.getElementById("mensagemVerso");
+
+    const mensagem = "Você é a razão do meu sorriso todos os dias.\nTe amo hoje e sempre! 💘";
+
+    mensagemVerso.textContent = mensagem;
+    cartao.addEventListener("click", () => {
+      cartao.classList.toggle("virado");
+    });
+  </script>
+</body>
+</html>
