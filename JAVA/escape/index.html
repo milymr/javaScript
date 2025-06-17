@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Escape Emocional 🔐</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #6249ee;
+      text-align: center;
+      padding: 40px;
+     
+    }
+
+    #jogo, #final {
+      display: none;
+    }
+
+    .pergunta {
+      margin: 30px auto;
+      max-width: 600px;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    button {
+      margin-top: 12px;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #3f51b5;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #303f9f;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #aaa;
+      width: 80%;
+      margin-top: 10px;
+    }
+
+    .mensagem {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #d32f2f;
+    }
+
+    .dica {
+      font-style: italic;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #222;
+    }
+
+    h2 {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="inicio">
+    <h1>🔐 Escape Emocional</h1>
+    <p>Resolva os enigmas mais desafiadores... se conseguir. 👀</p>
+    <button onclick="iniciarJogo()">Iniciar Jogo</button>
+  </div>
+
+  <div id="jogo">
+    <div class="pergunta" id="passo1">
+      <h2>📖 O Livro da Ilusão</h2>
+      <p>Charada: “O que tem cidades, mas sem casas; rios, mas sem água; e florestas, mas sem árvores?”</p>
+      <p class="dica">💡 Dica: Você pode dobrá-lo e colocá-lo na mochila.</p>
+      <input type="text" id="resposta1" placeholder="Digite sua resposta...">
+      <button onclick="verificarResposta(1)">Enviar</button>
+      <div id="msg1" class="mensagem"></div>
+      <audio id="audio1" src="mistério.mp3"></audio>
+    </div>
+
+    <div class="pergunta" id="passo2" style="display:none;">
+      <h2>🪟 A Janela do Vazio</h2>
+      <p>Charada: “Quanto mais você tira, mais você deixa para trás. O que é?”</p>
+      <p class="dica">💡 Dica: Algo que surge com o movimento.</p>
+      <input type="text" id="resposta2" placeholder="Digite sua resposta...">
+      <button onclick="verificarResposta(2)">Enviar</button>
+      <div id="msg2" class="mensagem"></div>
+      <audio id="audio2" src="mistério.mp3"></audio>
+    </div>
+
+    <div class="pergunta" id="passo3" style="display:none;">
+      <h2>🗄️ O Armário do Tempo</h2>
+      <p>Charada: “Estou sempre no seu futuro, mas nunca no seu passado. O que sou?”</p>
+      <p class="dica">💡 Dica: Só chega depois do presente.</p>
+      <input type="text" id="resposta3" placeholder="Digite sua resposta...">
+      <button onclick="verificarResposta(3)">Enviar</button>
+      <div id="msg3" class="mensagem"></div>
+      <audio id="audio3" src="mistério.mp3"></audio>
+    </div>
+
+    <div class="pergunta" id="porta" style="display:none;">
+      <h2>🚪 A Porta Final</h2>
+      <p>Você superou os enigmas! Deseja escapar da sala?</p>
+      <button onclick="concluirJogo()">Escapar</button>
+      
+    </div>
+  </div>
+
+  <div id="final">
+    <h2>🎉 Vitória!</h2>
+    <p>Você resolveu todos os enigmas com sucesso e escapou da sala! 🏆</p>
+    <button onclick="window.location.reload()">Jogar Novamente</button>
+    <div id="msg3" class="mensagem"></div>
+       <audio id="audio3" src="palmas.mp3"></audio>
+  </div>
+
+  <script>
+    function iniciarJogo() {
+      document.getElementById("inicio").style.display = "none";
+      document.getElementById("jogo").style.display = "block";
+      tocarAudio(1);
+    }
+
+    function verificarResposta(passo) {
+      const respostas = {
+        1: "mapa",
+        2: "pegadas",
+        3: "amanhã"
+      };
+
+      const input = document.getElementById("resposta" + passo).value.trim().toLowerCase();
+      const mensagem = document.getElementById("msg" + passo);
+
+      if (input === respostas[passo]) {
+        mensagem.style.color = "#388e3c";
+        mensagem.textContent = "✅ Correto!";
+        pararAudio(passo);
+        document.getElementById("passo" + passo).style.display = "none";
+
+        const proximoPasso = passo + 1;
+        const proximo = document.getElementById("passo" + proximoPasso) || document.getElementById("porta");
+        proximo.style.display = "block";
+
+        if (proximoPasso <= 3) {
+          tocarAudio(proximoPasso);
+        }
+      } else {
+        mensagem.style.color = "#d32f2f";
+        mensagem.textContent = "❌ Tente novamente.";
+      }
+    }
+
+    function tocarAudio(passo) {
+      pararTodosAudios();
+      const audio = document.getElementById("audio" + passo);
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+    }
+
+    function pararAudio(passo) {
+      const audio = document.getElementById("audio" + passo);
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
+
+    function pararTodosAudios() {
+      for(let i=1; i<=3; i++) {
+        pararAudio(i);
+      }
+    }
+
+    function concluirJogo() {
+      pararTodosAudios();
+      document.getElementById("jogo").style.display = "none";
+      document.getElementById("final").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
