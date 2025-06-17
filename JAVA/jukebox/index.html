@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jukebox Emocional</title>
+  <title>🎧 Jukebox Emocional</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       background-color: #ffffff;
+      background-size: cover;
+      background-position: center;
       transition: background 0.5s ease;
       padding: 30px;
     }
@@ -30,6 +32,12 @@
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     #imagem {
@@ -52,91 +60,130 @@
       margin-top: 20px;
       display: none;
     }
+
+    .ambiente {
+      margin-top: 40px;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
 
   <h1>🎧 Jukebox Emocional</h1>
-  <p>Selecione como você está se sentindo e ouça uma música temática!</p>
+  <p>Selecione como você está se sentindo e ou resolva os enigmas espalhados pelo ambiente!</p>
 
-  <button onclick="tocar('alegria')" style="background:#ffeb3b;">Alegria 😄</button>
-  <button onclick="tocar('tristeza')" style="background:#9e9e9e; color:white;">Tristeza 😢</button>
-  <button onclick="tocar('aventura')" style="background:#ff9800;">Aventura 🧭</button>
-  <button onclick="tocar('amor')" style="background:#f48fb1;">Amor 💖</button>
-  <button onclick="tocar('misterio')" style="background:#424242; color:white;">Mistério 👻</button>
-  <button onclick="tocar('calma')" style="background:#b3e5fc;">Calma 🌙</button>
-  <button onclick="tocar('animacao')" style="background:#81c784;">Animação ⚡</button>
-  <button onclick="tocar('suspense')" style="background:#6a1b9a; color:white;">Suspense 😬</button>
-  <button onclick="parar()" style="background:#e53935; color:white;">Parar Música ⏹️</button>
+  <div>
+    <button onclick="resolverEnigma('livro')" style="background:#ffe0b2;">📚 Livro Misterioso</button>
+    <button onclick="resolverEnigma('janela')" style="background:#c5e1a5;">🪟 Janela Trancada</button>
+    <button onclick="resolverEnigma('armario')" style="background:#b39ddb;">🗄️ Armário Antigo</button>
+  </div>
+
+  <div style="margin-top: 30px;">
+    <button onclick="tocar('alegria')" style="background:#ffeb3b;">Alegria 😄</button>
+    <button onclick="tocar('tristeza')" style="background:#9e9e9e; color:white;">Tristeza 😢</button>
+    <button onclick="tocar('misterio')" style="background:#424242; color:white;">Mistério 👻</button>
+    <button onclick="tocar('aventura')" style="background:#ff9800;">Aventura 🧭</button>
+    <button onclick="tocar('amor')" style="background:#f48fb1;">Amor 💖</button>
+    <button onclick="tocar('calma')" style="background:#b3e5fc;">Calma 🌙</button>
+    <button onclick="tocar('animacao')" style="background:#81c784;">Animação ⚡</button>
+    <button onclick="tocar('suspense')" style="background:#6a1b9a; color:white;">Suspense 😬</button>
+    <button onclick="verificarSaida()" style="background:#ff5722; color:white;">🚪 Abrir Porta</button>
+    <button onclick="parar()" style="background:#e53935; color:white;">⏹️ Parar Música</button>
+  </div>
 
   <div id="info"></div>
   <div id="imagem">
     <img id="foto" src="" alt="Imagem tema">
   </div>
-
   <audio id="audio" src="" controls></audio>
+
+  <div class="ambiente">
+    <p>🕯️ A sala está silenciosa. Há um livro empoeirado, uma janela trancada e um armário antigo... Talvez contenham segredos?</p>
+  </div>
 
   <script>
     const audio = document.getElementById("audio");
     const foto = document.getElementById("foto");
     const info = document.getElementById("info");
 
+    const enigmasResolvidos = {
+      livro: false,
+      janela: false,
+      armario: false
+    };
+
     const temas = {
       alegria: {
         musica: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        imagem: "https://img.freepik.com/vetores-premium/emoticon-de-emoji-feliz-mostrando-dois-polegares-para-cima-sinal-como-um-gesto-de-mao_1303870-1082.jpg?semt=ais_hybrid&w=740", // Sorrindo
+        imagem: "https://img.freepik.com/vetores-premium/emoticon-de-emoji-feliz-mostrando-dois-polegares-para-cima-sinal-como-um-gesto-de-mao_1303870-1082.jpg",
         cor: "#fff59d",
+        fundo: "https://i.pinimg.com/originals/fd/66/d6/fd66d63c9bfcf8c4bc01d0be9e5f0fd3.jpg",
         nome: "Música Alegre"
       },
       tristeza: {
-        musica: "trisiteza.mp3",
-        imagem: "https://down-br.img.susercontent.com/file/br-11134207-7r98q-lmaxscl6gwfr02", // Chorando
+        musica: "tristeza.mp3",
+        imagem: "https://down-br.img.susercontent.com/file/br-11134207-7r98q-lmaxscl6gwfr02",
         cor: "#90a4ae",
+        fundo: "https://wallpapercave.com/wp/wp7462450.jpg",
         nome: "Música Triste"
+      },
+      misterio: {
+        musica: "mistério.mp3",
+        imagem: "https://conceito.de/wp-content/uploads/2024/01/sherlock-4445206_1280-1.jpg",
+        cor: "#424242",
+        fundo: "https://cdn.pixabay.com/photo/2016/10/19/12/36/mist-1754252_960_720.jpg",
+        nome: "Música de Mistério",
+        bloqueado: "livro"
       },
       aventura: {
         musica: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        imagem: "https://thumbs.dreamstime.com/b/v%C3%B4o-do-menino-do-super-her%C3%B3i-no-c%C3%A9u-19513325.jpg", // Mochila
+        imagem: "https://thumbs.dreamstime.com/b/v%C3%B4o-do-menino-do-super-her%C3%B3i-no-c%C3%A9u-19513325.jpg",
         cor: "#ffe082",
+        fundo: "https://cdn.pixabay.com/photo/2016/11/14/03/06/adventure-1822633_960_720.jpg",
         nome: "Música de Aventura"
       },
       amor: {
         musica: "amor.mp3",
-        imagem: "https://cdn-icons-png.flaticon.com/512/833/833472.png", // Coração
+        imagem: "https://cdn-icons-png.flaticon.com/512/833/833472.png",
         cor: "#f8bbd0",
+        fundo: "https://i.pinimg.com/originals/4f/4e/e6/4f4ee6a22ffdd45bc6cb88b2aa260a1d.jpg",
         nome: "Música Romântica"
-      },
-      misterio: {
-        musica: "mistério.mp3",
-        imagem: "https://conceito.de/wp-content/uploads/2024/01/sherlock-4445206_1280-1.jpg", // Fantasma
-        cor: "#424242",
-        nome: "Música de Mistério"
       },
       calma: {
         musica: "calma.mp3",
-        imagem: "https://st.depositphotos.com/8950810/53528/v/450/depositphotos_535288960-stock-illustration-cute-funny-emoji-smile-face.jpg", // Lua
+        imagem: "https://st.depositphotos.com/8950810/53528/v/450/depositphotos_535288960-stock-illustration-cute-funny-emoji-smile-face.jpg",
         cor: "#b2ebf2",
+        fundo: "https://wallpaperaccess.com/full/528353.jpg",
         nome: "Música Relaxante"
       },
       animacao: {
         musica: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
-        imagem: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtBqeZqwNIrjBYDotfyIpcKf59ERzq0kyHhyphenhyphenqeMr4r8xsTwHfgW7_O9UMY03MbDo-3hRiiUyMcq9nhgGDVpJSux_Lxl5FBfOZuzCtEcpOyuAh2icZvj6LLhM5ozcsaFaU8VGvynLF80Q/s1600/despicable_me_2_minions-wide.jpg", // Raio
+        imagem: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtBqeZqwNIrjBYDotfyIpcKf59ERzq0kyHhyphenhyphenqeMr4r8xsTwHfgW7_O9UMY03MbDo-3hRiiUyMcq9nhgGDVpJSux_Lxl5FBfOZuzCtEcpOyuAh2icZvj6LLhM5ozcsaFaU8VGvynLF80Q/s1600/despicable_me_2_minions-wide.jpg",
         cor: "#aed581",
+        fundo: "https://cdn.wallpapersafari.com/27/33/EvXHHZ.jpg",
         nome: "Música Animada"
       },
       suspense: {
         musica: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
-        imagem: "https://3.bp.blogspot.com/-OIqBXjzC_gc/Tl5wg7p_bNI/AAAAAAAABLU/KcifrJ2Bn80/s1600/7542halloween3.jpg", // Olho espiando
+        imagem: "https://3.bp.blogspot.com/-OIqBXjzC_gc/Tl5wg7p_bNI/AAAAAAAABLU/KcifrJ2Bn80/s1600/7542halloween3.jpg",
         cor: "#9575cd",
-        nome: "Música de Suspense"
+        fundo: "https://img.freepik.com/fotos-premium/corredor-escuro-com-portas-abertas-e-luz-na-extremidade_902049-1124.jpg",
+        nome: "Música de Suspense",
+        bloqueado: "janela"
       }
     };
 
     function tocar(tipo) {
       const tema = temas[tipo];
-      parar(); // Reset
 
-      document.body.style.backgroundColor = tema.cor;
+      if (tema.bloqueado && !enigmasResolvidos[tema.bloqueado]) {
+        alert("🔒 Você precisa resolver o enigma do " + tema.bloqueado + " para desbloquear essa emoção!");
+        return;
+      }
+
+      parar();
+
+      document.body.style.backgroundImage = `url('${tema.fundo}')`;
       foto.src = tema.imagem;
       foto.style.display = "block";
       audio.src = tema.musica;
@@ -150,10 +197,47 @@
       audio.currentTime = 0;
       audio.style.display = "none";
       foto.style.display = "none";
-      document.body.style.backgroundColor = "#ffffff";
+      document.body.style.backgroundImage = "none";
       info.textContent = "";
     }
-  </script>
 
+    function resolverEnigma(objeto) {
+      let resposta;
+      switch (objeto) {
+        case 'livro':
+          resposta = prompt("📚 Enigma: O que é cheio de páginas mas não pode falar?");
+          if (resposta.toLowerCase().includes("livro")) {
+            alert("✅ Você descobriu o segredo do livro!");
+            enigmasResolvidos.livro = true;
+          } else alert("❌ Tente novamente!");
+          break;
+
+        case 'janela':
+          resposta = prompt("🪟 Enigma: Quanto mais você tira, maior ela fica. O que é?");
+          if (resposta.toLowerCase().includes("buraco")) {
+            alert("✅ A janela destrancou com sua resposta!");
+            enigmasResolvidos.janela = true;
+          } else alert("❌ Errou! Tente de novo.");
+
+          break;
+
+        case 'armario':
+          resposta = prompt("🗄️ Enigma: Tem chave mas não tranca, o que é?");
+          if (resposta.toLowerCase().includes("teclado")) {
+            alert("✅ Você descobriu o enigma do armário!");
+            enigmasResolvidos.armario = true;
+          } else alert("❌ Errado! Tente de novo.");
+          break;
+      }
+    }
+
+    function verificarSaida() {
+      if (enigmasResolvidos.livro && enigmasResolvidos.janela && enigmasResolvidos.armario) {
+        alert("🚪 A porta se abre lentamente... Você completou todos os enigmas!");
+      } else {
+        alert("🔒 A porta ainda está trancada. Resolva todos os enigmas primeiro!");
+      }
+    }
+  </script>
 </body>
 </html>
