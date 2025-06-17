@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jukebox Emocional</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #ffffff;
+      transition: background 0.5s ease;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #imagem {
+      margin-top: 20px;
+    }
+
+    #foto {
+      width: 300px;
+      border-radius: 12px;
+      display: none;
+    }
+
+    #info {
+      font-size: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #audio {
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎧 Jukebox Emocional</h1>
+  <p>Selecione como você está se sentindo e ouça uma música temática!</p>
+
+  <button onclick="tocar('alegria')" style="background:#ffeb3b;">Alegria 😄</button>
+  <button onclick="tocar('tristeza')" style="background:#9e9e9e; color:white;">Tristeza 😢</button>
+  <button onclick="tocar('aventura')" style="background:#ff9800;">Aventura 🧭</button>
+  <button onclick="tocar('amor')" style="background:#f48fb1;">Amor 💖</button>
+  <button onclick="tocar('misterio')" style="background:#424242; color:white;">Mistério 👻</button>
+  <button onclick="tocar('calma')" style="background:#b3e5fc;">Calma 🌙</button>
+  <button onclick="tocar('animacao')" style="background:#81c784;">Animação ⚡</button>
+  <button onclick="tocar('suspense')" style="background:#6a1b9a; color:white;">Suspense 😬</button>
+  <button onclick="parar()" style="background:#e53935; color:white;">Parar Música ⏹️</button>
+
+  <div id="info"></div>
+  <div id="imagem">
+    <img id="foto" src="" alt="Imagem tema">
+  </div>
+
+  <audio id="audio" src="" controls></audio>
+
+  <script>
+    const audio = document.getElementById("audio");
+    const foto = document.getElementById("foto");
+    const info = document.getElementById("info");
+
+    const temas = {
+      alegria: {
+        musica: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        imagem: "https://img.freepik.com/vetores-premium/emoticon-de-emoji-feliz-mostrando-dois-polegares-para-cima-sinal-como-um-gesto-de-mao_1303870-1082.jpg?semt=ais_hybrid&w=740", // Sorrindo
+        cor: "#fff59d",
+        nome: "Música Alegre"
+      },
+      tristeza: {
+        musica: "trisiteza.mp3",
+        imagem: "https://down-br.img.susercontent.com/file/br-11134207-7r98q-lmaxscl6gwfr02", // Chorando
+        cor: "#90a4ae",
+        nome: "Música Triste"
+      },
+      aventura: {
+        musica: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        imagem: "https://thumbs.dreamstime.com/b/v%C3%B4o-do-menino-do-super-her%C3%B3i-no-c%C3%A9u-19513325.jpg", // Mochila
+        cor: "#ffe082",
+        nome: "Música de Aventura"
+      },
+      amor: {
+        musica: "amor.mp3",
+        imagem: "https://cdn-icons-png.flaticon.com/512/833/833472.png", // Coração
+        cor: "#f8bbd0",
+        nome: "Música Romântica"
+      },
+      misterio: {
+        musica: "mistério.mp3",
+        imagem: "https://conceito.de/wp-content/uploads/2024/01/sherlock-4445206_1280-1.jpg", // Fantasma
+        cor: "#424242",
+        nome: "Música de Mistério"
+      },
+      calma: {
+        musica: "calma.mp3",
+        imagem: "https://st.depositphotos.com/8950810/53528/v/450/depositphotos_535288960-stock-illustration-cute-funny-emoji-smile-face.jpg", // Lua
+        cor: "#b2ebf2",
+        nome: "Música Relaxante"
+      },
+      animacao: {
+        musica: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+        imagem: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtBqeZqwNIrjBYDotfyIpcKf59ERzq0kyHhyphenhyphenqeMr4r8xsTwHfgW7_O9UMY03MbDo-3hRiiUyMcq9nhgGDVpJSux_Lxl5FBfOZuzCtEcpOyuAh2icZvj6LLhM5ozcsaFaU8VGvynLF80Q/s1600/despicable_me_2_minions-wide.jpg", // Raio
+        cor: "#aed581",
+        nome: "Música Animada"
+      },
+      suspense: {
+        musica: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+        imagem: "https://3.bp.blogspot.com/-OIqBXjzC_gc/Tl5wg7p_bNI/AAAAAAAABLU/KcifrJ2Bn80/s1600/7542halloween3.jpg", // Olho espiando
+        cor: "#9575cd",
+        nome: "Música de Suspense"
+      }
+    };
+
+    function tocar(tipo) {
+      const tema = temas[tipo];
+      parar(); // Reset
+
+      document.body.style.backgroundColor = tema.cor;
+      foto.src = tema.imagem;
+      foto.style.display = "block";
+      audio.src = tema.musica;
+      audio.style.display = "block";
+      info.textContent = `🎵 Tocando: ${tema.nome}`;
+      audio.play();
+    }
+
+    function parar() {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.style.display = "none";
+      foto.style.display = "none";
+      document.body.style.backgroundColor = "#ffffff";
+      info.textContent = "";
+    }
+  </script>
+
+</body>
+</html>

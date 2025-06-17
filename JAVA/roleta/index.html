@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>o que vou almoçar hoje?</h1>
+
+    <div class="ponteiro"></div>
+    <canvas id="roleta" width="400" height="400"></canvas>
+
+    <br><br>
+    <button onclick="girar()">girar</button>
+    <h2>resultado: <span id="resultado">----</span></h2>
+
+    <script>
+        const setores = ["pizza", "lanche", "comida", "sushi"]
+        const cores = ["#f1c40f", "#e67e22", "#e74c3c", "#2ecc71"]
+
+        const canvas = document.getElementById("roleta")
+        const ctx = canvas.getcontext("2d")
+        let anguloAtual = 0
+        desenharRoleta()
+
+        function desenharRoleta(){
+            
+        }
+    </script>
+</body>
+</html>
